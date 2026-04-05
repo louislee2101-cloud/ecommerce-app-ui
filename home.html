@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=375px, initial-scale=1.0"/>
+  <title>首页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 375px;
+      height: 812px;
+      overflow: hidden;
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #f5f5f5;
+    }
+    /* 顶部 */
+    .header {
+      background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+      padding: 48px 20px 20px;
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .header-greeting { color: rgba(255,255,255,0.9); font-size: 13px; }
+    .header-name { color: #fff; font-size: 20px; font-weight: 700; }
+    .header-icons { display: flex; gap: 12px; font-size: 22px; }
+    .search-bar {
+      background: #fff;
+      border-radius: 24px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .content { height: 700px; overflow-y: auto; padding-bottom: 70px; }
+
+    /* Banner */
+    .banner {
+      margin: 16px;
+      height: 160px;
+      background: linear-gradient(135deg, #FFC947, #FF6B6B);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner-text { z-index: 2; }
+    .banner-tag {
+      background: rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .banner-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .banner-sub { font-size: 12px; color: rgba(255,255,255,0.85); margin-bottom: 12px; }
+    .banner-btn {
+      background: #fff;
+      color: #FF6B6B;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 14px;
+      display: inline-block;
+    }
+    .banner-emoji {
+      position: absolute;
+      right: 20px;
+      font-size: 80px;
+      opacity: 0.9;
+    }
+
+    /* 分类 */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      margin-bottom: 12px;
+    }
+    .section-title span:first-child { font-size: 17px; font-weight: 700; color: #222; }
+    .section-title span:last-child { font-size: 13px; color: #FF6B6B; }
+
+    .categories { display: flex; gap: 8px; padding: 0 16px; margin-bottom: 20px; overflow-x: auto; }
+    .cat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 64px;
+    }
+    .cat-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+    .cat-name { font-size: 11px; color: #555; }
+
+    /* 商品 */
+    .products { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; }
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .product-img {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+    }
+    .product-info { padding: 10px 12px; }
+    .product-name { font-size: 13px; color: #333; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-price { font-size: 16px; font-weight: 700; color: #FF6B6B; }
+    .product-old { font-size: 11px; color: #bbb; text-decoration: line-through; margin-left: 6px; }
+
+    /* 底部导航 */
+    .tabbar {
+      position: absolute;
+      bottom: 0;
+      width: 375px;
+      height: 70px;
+      background: #fff;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding-bottom: 8px;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .tab-icon { font-size: 22px; }
+    .tab-label { font-size: 10px; color: #bbb; }
+    .tab-item.active .tab-label { color: #FF6B6B; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-greeting">早上好 👋</div>
+        <div class="header-name">Jerry</div>
+      </div>
+      <div class="header-icons">
+        <span>🔔</span>
+        <span>🛒</span>
+      </div>
+    </div>
+    <div class="search-bar">🔍 搜索商品、品牌...</div>
+  </div>
+
+  <div class="content">
+    <div class="banner">
+      <div class="banner-text">
+        <div class="banner-tag">限时特惠</div>
+        <div class="banner-title">夏日大促</div>
+        <div class="banner-sub">全场低至 5 折起</div>
+        <div class="banner-btn">立即抢购</div>
+      </div>
+      <div class="banner-emoji">🎉</div>
+    </div>
+
+    <div class="section-title"><span>商品分类</span><span>查看全部</span></div>
+    <div class="categories">
+      <div class="cat-item">
+        <div class="cat-icon" style="background:#FFF0F0;">👗</div>
+        <div class="cat-name">服装</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon" style="background:#FFF5E0;">👟</div>
+        <div class="cat-name">鞋靴</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon" style="background:#F0F7FF;">📱</div>
+        <div class="cat-name">数码</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon" style="background:#F0FFF4;">🏠</div>
+        <div class="cat-name">家居</div>
+      </div>
+      <div class="cat-item">
+        <div class="cat-icon" style="background:#FFF0FA;">💄</div>
+        <div class="cat-name">美妆</div>
+      </div>
+    </div>
+
+    <div class="section-title"><span>热销商品</span><span>更多</span></div>
+    <div class="products">
+      <div class="product-card">
+        <div class="product-img" style="background:#FFF0F0;">👗</div>
+        <div class="product-info">
+          <div class="product-name">夏季连衣裙</div>
+          <div><span class="product-price">¥199</span><span class="product-old">¥399</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#F0F7FF;">📱</div>
+        <div class="product-info">
+          <div class="product-name">智能手机</div>
+          <div><span class="product-price">¥2999</span><span class="product-old">¥3999</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#FFF5E0;">👟</div>
+        <div class="product-info">
+          <div class="product-name">运动跑鞋</div>
+          <div><span class="product-price">¥399</span><span class="product-old">¥699</span></div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:#FFF0FA;">💄</div>
+        <div class="product-info">
+          <div class="product-name">口红套装</div>
+          <div><span class="product-price">¥159</span><span class="product-old">¥259</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item active">
+      <div class="tab-icon">🏠</div>
+      <div class="tab-label" style="color:#FF6B6B;">首页</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">🔍</div>
+      <div class="tab-label">发现</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">🛒</div>
+      <div class="tab-label">购物车</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">👤</div>
+      <div class="tab-label">我的</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=375px, initial-scale=1.0"/>
+  <title>个人中心</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 375px;
+      height: 812px;
+      overflow: hidden;
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #f5f5f5;
+    }
+    /* 顶部背景 */
+    .top-bg {
+      background: linear-gradient(135deg, #FF6B6B, #FF8E53, #FFC947);
+      padding: 48px 20px 70px;
+      position: relative;
+    }
+    .top-bg .circle {
+      position: absolute;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      top: -40px; right: -40px;
+    }
+    .user-info { display: flex; align-items: center; gap: 16px; }
+    .avatar {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+    .user-name { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .user-id { font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .vip-tag {
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .settings-btn {
+      position: absolute;
+      top: 48px; right: 20px;
+      font-size: 22px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* 数据卡片 */
+    .stats-card {
+      background: #fff;
+      border-radius: 20px;
+      margin: -40px 16px 12px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 2;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 20px; font-weight: 800; color: #222; }
+    .stat-label { font-size: 11px; color: #999; margin-top: 2px; }
+    .stat-divider { width: 1px; background: #f0f0f0; }
+
+    /* 订单 */
+    .section {
+      background: #fff;
+      border-radius: 16px;
+      margin: 0 16px 12px;
+      padding: 16px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .section-header span:first-child { font-size: 15px; font-weight: 700; color: #222; }
+    .section-header span:last-child { font-size: 12px; color: #FF6B6B; }
+
+    .order-tabs { display: flex; justify-content: space-around; }
+    .order-tab { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .order-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    .order-label { font-size: 11px; color: #555; }
+    .order-badge {
+      position: relative;
+    }
+    .badge {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: #FF6B6B;
+      color: #fff;
+      font-size: 10px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 菜单列表 */
+    .menu-list { }
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .menu-text { font-size: 14px; color: #333; flex: 1; }
+    .menu-arrow { font-size: 14px; color: #ccc; }
+
+    /* 底部导航 */
+    .tabbar {
+      position: absolute;
+      bottom: 0;
+      width: 375px;
+      height: 70px;
+      background: #fff;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding-bottom: 8px;
+    }
+    .tab-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .tab-icon { font-size: 22px; }
+    .tab-label { font-size: 10px; color: #bbb; }
+  </style>
+</head>
+<body>
+  <div class="top-bg">
+    <div class="circle"></div>
+    <div class="settings-btn">⚙️</div>
+    <div class="user-info">
+      <div class="avatar">👤</div>
+      <div>
+        <div class="user-name">Jerry Wen</div>
+        <div class="user-id">ID: 88234567</div>
+        <div class="vip-tag">👑 VIP 会员</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-card">
+    <div class="stat-item">
+      <div class="stat-num">128</div>
+      <div class="stat-label">关注</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">36</div>
+      <div class="stat-label">粉丝</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">2,840</div>
+      <div class="stat-label">积分</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num">¥56</div>
+      <div class="stat-label">优惠券</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>我的订单</span>
+      <span>全部订单 ›</span>
+    </div>
+    <div class="order-tabs">
+      <div class="order-tab">
+        <div class="order-badge">
+          <div class="order-icon" style="background:#FFF0F0;">💳</div>
+          <div class="badge">2</div>
+        </div>
+        <div class="order-label">待付款</div>
+      </div>
+      <div class="order-tab">
+        <div class="order-icon" style="background:#FFF5E0;">📦</div>
+        <div class="order-label">待发货</div>
+      </div>
+      <div class="order-tab">
+        <div class="order-icon" style="background:#F0FFF4;">🚚</div>
+        <div class="order-label">待收货</div>
+      </div>
+      <div class="order-tab">
+        <div class="order-icon" style="background:#F0F7FF;">⭐</div>
+        <div class="order-label">待评价</div>
+      </div>
+      <div class="order-tab">
+        <div class="order-icon" style="background:#FFF0FA;">↩️</div>
+        <div class="order-label">退换货</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="menu-list">
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#FFF0F0;">❤️</div>
+        <div class="menu-text">我的收藏</div>
+        <div class="menu-arrow">›</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#FFF5E0;">📍</div>
+        <div class="menu-text">收货地址</div>
+        <div class="menu-arrow">›</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#F0FFF4;">🎁</div>
+        <div class="menu-text">领券中心</div>
+        <div class="menu-arrow">›</div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#F0F7FF;">🔒</div>
+        <div class="menu-text">账号安全</div>
+        <div class="menu-arrow">›</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab-item">
+      <div class="tab-icon">🏠</div>
+      <div class="tab-label">首页</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">🔍</div>
+      <div class="tab-label">发现</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">🛒</div>
+      <div class="tab-label">购物车</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">👤</div>
+      <div class="tab-label" style="color:#FF6B6B;">我的</div>
+    </div>
+  </div>
+</body>
+</html>

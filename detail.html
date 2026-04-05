@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=375px, initial-scale=1.0"/>
+  <title>商品详情</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 375px;
+      height: 812px;
+      overflow: hidden;
+      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #f5f5f5;
+    }
+    /* 顶部图片区 */
+    .product-hero {
+      width: 375px;
+      height: 340px;
+      background: linear-gradient(145deg, #FFF0F0, #FFE4E4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 140px;
+      position: relative;
+    }
+    .back-btn {
+      position: absolute;
+      top: 48px; left: 16px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .share-btn {
+      position: absolute;
+      top: 48px; right: 16px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .img-dots {
+      position: absolute;
+      bottom: 16px;
+      display: flex;
+      gap: 6px;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,107,107,0.3); }
+    .dot.active { width: 18px; border-radius: 3px; background: #FF6B6B; }
+
+    /* 정보 카드 */
+    .info-card {
+      background: #fff;
+      border-radius: 24px 24px 0 0;
+      margin-top: -20px;
+      padding: 24px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+    .price { font-size: 28px; font-weight: 800; color: #FF6B6B; }
+    .price-old { font-size: 14px; color: #bbb; text-decoration: line-through; }
+    .price-tag {
+      background: #FFF0F0;
+      color: #FF6B6B;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 8px;
+      margin-left: auto;
+    }
+    .product-name { font-size: 18px; font-weight: 700; color: #222; margin-bottom: 6px; }
+    .product-sub { font-size: 13px; color: #999; margin-bottom: 16px; }
+
+    .rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .stars { color: #FFC947; font-size: 14px; }
+    .rating-num { font-size: 13px; color: #555; }
+    .sold { font-size: 12px; color: #bbb; margin-left: auto; }
+
+    .divider { height: 1px; background: #f5f5f5; margin: 16px 0; }
+
+    .option-label { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 10px; }
+    .color-options { display: flex; gap: 10px; margin-bottom: 16px; }
+    .color-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+    }
+    .color-dot.selected { border-color: #FF6B6B; transform: scale(1.1); }
+
+    .size-options { display: flex; gap: 8px; margin-bottom: 16px; }
+    .size-btn {
+      padding: 6px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      border: 1.5px solid #eee;
+      color: #555;
+      background: #fff;
+    }
+    .size-btn.selected {
+      border-color: #FF6B6B;
+      color: #FF6B6B;
+      background: #FFF0F0;
+    }
+
+    /* 底部操作栏 */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      width: 375px;
+      background: #fff;
+      padding: 12px 20px 24px;
+      display: flex;
+      gap: 12px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .btn-cart {
+      flex: 1;
+      height: 50px;
+      background: #FFF0F0;
+      border: none;
+      border-radius: 25px;
+      color: #FF6B6B;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .btn-buy {
+      flex: 2;
+      height: 50px;
+      background: linear-gradient(90deg, #FF6B6B, #FF8E53);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="product-hero">
+    👗
+    <div class="back-btn">←</div>
+    <div class="share-btn">↗</div>
+    <div class="img-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="price-row">
+      <div class="price">¥199</div>
+      <div class="price-old">¥399</div>
+      <div class="price-tag">5折优惠</div>
+    </div>
+    <div class="product-name">夏季清新连衣裙</div>
+    <div class="product-sub">轻薄透气 · 多色可选 · 显瘦版型</div>
+    <div class="rating-row">
+      <div class="stars">★★★★★</div>
+      <div class="rating-num">4.9分</div>
+      <div class="sold">已售 3,241 件</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="option-label">选择颜色</div>
+    <div class="color-options">
+      <div class="color-dot selected" style="background:#FF6B6B;"></div>
+      <div class="color-dot" style="background:#FFC947;"></div>
+      <div class="color-dot" style="background:#6BD5FF;"></div>
+      <div class="color-dot" style="background:#B8FF6B;"></div>
+    </div>
+
+    <div class="option-label">选择尺码</div>
+    <div class="size-options">
+      <div class="size-btn">XS</div>
+      <div class="size-btn selected">S</div>
+      <div class="size-btn">M</div>
+      <div class="size-btn">L</div>
+      <div class="size-btn">XL</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <button class="btn-cart">🛒 加入购物车</button>
+    <button class="btn-buy">立即购买</button>
+  </div>
+</body>
+</html>
